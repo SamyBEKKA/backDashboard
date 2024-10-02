@@ -24,9 +24,6 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Employe $employe_id = null;
 
-    // #[ORM\ManyToOne(inversedBy: 'orders')]
-    // private ?paiement $paiement_id = null;
-
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?User $user_id = null;
 
@@ -38,6 +35,9 @@ class Order
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Status $status_id = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?Paiement $paiement_id = null;
 
     public function __construct()
     {
@@ -72,18 +72,6 @@ class Order
 
         return $this;
     }
-
-    // public function getPaiementId(): ?paiement
-    // {
-    //     return $this->paiement_id;
-    // }
-
-    // public function setPaiementId(?paiement $paiement_id): static
-    // {
-    //     $this->paiement_id = $paiement_id;
-
-    //     return $this;
-    // }
 
     public function getUserId(): ?User
     {
@@ -135,6 +123,18 @@ class Order
     public function setStatusId(?Status $status_id): static
     {
         $this->status_id = $status_id;
+
+        return $this;
+    }
+
+    public function getPaiementId(): ?Paiement
+    {
+        return $this->paiement_id;
+    }
+
+    public function setPaiementId(?Paiement $paiement_id): static
+    {
+        $this->paiement_id = $paiement_id;
 
         return $this;
     }

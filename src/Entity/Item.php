@@ -31,6 +31,9 @@ class Item
     #[ORM\ManyToOne(inversedBy: 'items')]
     private ?Order $order_id = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $item_description = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +95,18 @@ class Item
     public function setOrderId(?Order $order_id): static
     {
         $this->order_id = $order_id;
+
+        return $this;
+    }
+
+    public function getItemDescription(): ?string
+    {
+        return $this->item_description;
+    }
+
+    public function setItemDescription(?string $item_description): static
+    {
+        $this->item_description = $item_description;
 
         return $this;
     }

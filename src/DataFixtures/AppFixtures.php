@@ -7,7 +7,9 @@ use App\Entity\City;
 use App\Entity\Country;
 use App\Entity\Employe;
 use App\Entity\Material;
+use App\Entity\Paiement;
 use App\Entity\Service;
+use App\Entity\Status;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -143,6 +145,27 @@ class AppFixtures extends Fixture
         $employe->setUserGenre(2);
         $employe->setUserBirthday(new \DateTime('08-12-2005'));
         $manager->persist($employe);
+
+        $status = new Status();
+        $status->setNameStatus('En cour');
+        
+        $status = new Status();
+        $status->setNameStatus('Terminé');
+        
+        $status = new Status();
+        $status->setNameStatus('En attente');
+
+        $status = new Status();
+        $status->setNameStatus('Annulé');
+
+        $paiement = new Paiement();
+        $paiement->setPaiementMethod('Carte Bleu');
+
+        $paiement = new Paiement();
+        $paiement->setPaiementMethod('Apple Pay');
+
+        $paiement = new Paiement();
+        $paiement->setPaiementMethod('PayPal');
 
         // Enregistrer tous les changements dans la base de données
         $manager->flush();
