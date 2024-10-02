@@ -36,6 +36,9 @@ class Order
     #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'order_id')]
     private Collection $items;
 
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?Status $status_id = null;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
@@ -120,6 +123,18 @@ class Order
                 $item->setOrderId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStatusId(): ?Status
+    {
+        return $this->status_id;
+    }
+
+    public function setStatusId(?Status $status_id): static
+    {
+        $this->status_id = $status_id;
 
         return $this;
     }
