@@ -9,7 +9,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    // normalizationContext:
+)]
 #[ORM\Table(name: '`order`')]
 class Order
 {

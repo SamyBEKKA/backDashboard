@@ -34,6 +34,9 @@ class Item
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $item_description = null;
 
+    #[ORM\ManyToOne(inversedBy: 'items')]
+    private ?Material $material_id = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +110,18 @@ class Item
     public function setItemDescription(?string $item_description): static
     {
         $this->item_description = $item_description;
+
+        return $this;
+    }
+
+    public function getMaterialId(): ?Material
+    {
+        return $this->material_id;
+    }
+
+    public function setMaterialId(?Material $material_id): static
+    {
+        $this->material_id = $material_id;
 
         return $this;
     }

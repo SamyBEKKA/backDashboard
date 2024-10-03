@@ -146,27 +146,29 @@ class AppFixtures extends Fixture
         $employe->setUserBirthday(new \DateTime('08-12-2005'));
         $manager->persist($employe);
 
-        $status = new Status();
-        $status->setNameStatus('En cour');
+        $statusType = [
+            ['name_status' => 'En attente de confirmation'],
+            ['name_status' => 'En cour'],
+            ['name_status' => 'Terminé'],
+            ['name_status' => 'Annulé']
+        ];
+        foreach($statusType as $data){
+            $status = new Status();
+            $status->setNameStatus($data['name_status']);
+            $manager->persist($status);
+        }
         
-        $status = new Status();
-        $status->setNameStatus('Terminé');
-        
-        $status = new Status();
-        $status->setNameStatus('En attente');
+        $paiementType = [
+            ['paiement_method' => 'Carte bancaire'],
+            ['paiement_method' => 'PayPal'],
+            ['paiement_method' => 'Apple Pay']
+        ];
 
-        $status = new Status();
-        $status->setNameStatus('Annulé');
-
-        $paiement = new Paiement();
-        $paiement->setPaiementMethod('Carte Bleu');
-
-        $paiement = new Paiement();
-        $paiement->setPaiementMethod('Apple Pay');
-
-        $paiement = new Paiement();
-        $paiement->setPaiementMethod('PayPal');
-
+        foreach($paiementType as $data){
+            $paiement = new Paiement();
+            $paiement->setPaiementMethod($data['paiement_method']);
+            $manager->persist($paiement);
+        };
         // Enregistrer tous les changements dans la base de données
         $manager->flush();
     }

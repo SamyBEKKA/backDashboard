@@ -21,14 +21,14 @@ class Material
     private ?string $material_name = null;
 
     /**
-     * @var Collection<int, Article>
+     * @var Collection<int, Item>
      */
-    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'material_id')]
-    private Collection $articles;
+    #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'material_id')]
+    private Collection $items;
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -49,29 +49,29 @@ class Material
     }
 
     /**
-     * @return Collection<int, Article>
+     * @return Collection<int, Item>
      */
-    public function getArticles(): Collection
+    public function getItems(): Collection
     {
-        return $this->articles;
+        return $this->items;
     }
 
-    public function addArticle(Article $article): static
+    public function addItem(Item $item): static
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-            $article->setMaterialId($this);
+        if (!$this->items->contains($item)) {
+            $this->items->add($item);
+            $item->setMaterialId($this);
         }
 
         return $this;
     }
 
-    public function removeArticle(Article $article): static
+    public function removeItem(Item $item): static
     {
-        if ($this->articles->removeElement($article)) {
+        if ($this->items->removeElement($item)) {
             // set the owning side to null (unless already changed)
-            if ($article->getMaterialId() === $this) {
-                $article->setMaterialId(null);
+            if ($item->getMaterialId() === $this) {
+                $item->setMaterialId(null);
             }
         }
 

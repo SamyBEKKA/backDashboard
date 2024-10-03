@@ -97,17 +97,6 @@ class Article
         return $this;
     }
 
-    public function getMaterialId(): ?Material
-    {
-        return $this->material_id;
-    }
-
-    public function setMaterialId(?Material $material_id): static
-    {
-        $this->material_id = $material_id;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Item>
