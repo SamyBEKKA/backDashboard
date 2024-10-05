@@ -43,6 +43,11 @@ class SousCategorie
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return $this->sous_categorie_name ?? 'Sous categorie inconnu';
+    }
+
     public function getSousCategorieName(): ?string
     {
         return $this->sous_categorie_name;

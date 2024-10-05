@@ -70,6 +70,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->orders = new ArrayCollection();
     }
+    public function __toString(): string
+    {
+        // Combine le prénom, le nom de famille et l'email, en gérant les valeurs nulles
+        return ($this->user_name ?? '') . ' ' . ($this->user_last_name ?? '') . ' (' . ($this->user_email ?? '') . ')';
+    }
 
     public function getId(): ?int
     {

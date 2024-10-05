@@ -30,6 +30,11 @@ class Service
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return $this->service_name ?? 'Service inconnu'; // Retourne le nom du service ou 'Service inconnu' si null
+    }
+    
     public function getServiceName(): ?string
     {
         return $this->service_name;

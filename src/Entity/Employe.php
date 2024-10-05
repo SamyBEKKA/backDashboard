@@ -43,7 +43,12 @@ class Employe extends User
     // {
     //     $this->orders = new ArrayCollection();
     // }
-
+    // Méthode __toString pour renvoyer le pseudo de l'employé
+    public function __toString(): string
+    {
+        return $this->employe_pseudo; // Retourne le pseudo de l'employé
+    }
+    
     public function getEmployePseudo(): ?string
     {
         return $this->employe_pseudo;

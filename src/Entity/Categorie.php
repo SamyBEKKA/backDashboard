@@ -40,6 +40,11 @@ class Categorie
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return $this->categorie_name ?? 'Categorie inconnu';
+    }
+
     public function getCategorieName(): ?string
     {
         return $this->categorie_name;

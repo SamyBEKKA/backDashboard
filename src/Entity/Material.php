@@ -36,6 +36,11 @@ class Material
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return $this->material_name ?? 'Matériel inconnu'; // Retourne le nom du matériel ou 'Matériel inconnu' si null
+    }
+
     public function getMaterialName(): ?string
     {
         return $this->material_name;

@@ -29,10 +29,6 @@ class Article
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?SousCategorie $sous_categorie_id = null;
-
-    #[ORM\ManyToOne(inversedBy: 'articles')]
-    private ?Material $material_id = null;
-
     /**
      * @var Collection<int, Item>
      */
@@ -49,6 +45,11 @@ class Article
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return $this->article_name ?? 'Article inconnu'; // Retourne le nom de l'article ou 'Article inconnu' si null
+    }
+    
     public function getArticleName(): ?string
     {
         return $this->article_name;

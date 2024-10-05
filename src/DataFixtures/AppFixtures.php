@@ -20,16 +20,16 @@ class AppFixtures extends Fixture
     {
         // Création des articles
         $articlesData = [
-            ['article_name' => 'Haut', 
-            'article_image' => 'https://example.com/image-haut.jpg', 
+            ['id'=>'1','article_name' => 'Haut', 
+            'article_image' => '', 
             'article_description' => 'Un haut élégant'],
-            ['article_name' => 'Bas', 
-            'article_image' => 'https://example.com/image-bas.jpg', 
+            ['id'=>'2','article_name' => 'Bas', 
+            'article_image' => '', 
             'article_description' => 'Des bas confortables'],
-            ['article_name' => 'Robe', 'article_image' => 'https://example.com/image-robe.jpg', 
+            ['id'=>'3','article_name' => 'Robe', 'article_image' => '', 
             'article_description' => 'Une robe chic'],
-            ['article_name' => 'Sous-vêtement', 
-            'article_image' => 'https://example.com/image-sous-vetement.jpg', 
+            ['id'=>'4','article_name' => 'Sous-vêtement', 
+            'article_image' => '', 
             'article_description' => 'Sous-vêtements de qualité'],
         ];
 
@@ -41,30 +41,18 @@ class AppFixtures extends Fixture
             $manager->persist($article);
         }
 
-        // Définition des matériaux à insérer dans la base de données
+        // Création des matériaux
         $materials = [
-            'Coton',
-            'Cuir',
-            'Laine',
-            'Soie'
+           ['id'=>'1', 'material_name'=>'Coton'],
+           ['id'=>'2', 'material_name'=>'Cuir'],
+           ['id'=>'3', 'material_name'=>'Laine'],
+           ['id'=>'4', 'material_name'=>'Soie']
         ];
 
         // Boucle pour créer et insérer chaque matériau
-        foreach ($materials as $materialName) {
+        foreach ($materials as $data) {
             $material = new Material();
-            $material->setMaterialName($materialName); // Assure-toi que le setter s'appelle bien setMaterialName
-            $manager->persist($material); // On persiste chaque matériau
-        }
-
-        // Création des matériaux
-        $materialsData = [
-            ['material_name' => 'Coton'],
-            ['material_name' => 'Cuir'],
-        ];
-
-        foreach ($materialsData as $data) {
-            $material = new Material();
-            $material->setMaterialName($data['material_name']);
+            $material->setMaterialName($data['material_name']); 
             $manager->persist($material);
         }
 
@@ -92,10 +80,10 @@ class AppFixtures extends Fixture
 
         // Création des services
         $servicesData = [
-            ['service_name' => 'Lavage Repassage', 'service_image' => 'https://example.com/lavage.jpg', 'service_price' => 25.99],
-            ['service_name' => 'Simple Repassage', 'service_image' => 'https://example.com/repassage.jpg', 'service_price' => 19.99],
-            ['service_name' => 'Blanchissement', 'service_image' => 'https://example.com/blanchissement.jpg', 'service_price' => 34.99],
-            ['service_name' => 'Nettoyage Délicat', 'service_image' => 'https://example.com/nettoyage.jpg', 'service_price' => 49.99],
+            ['id'=>'1','service_name' => 'Lavage Repassage', 'service_image' => 'assets/photo_prestation_service_hackaton_pressing_lavage_et_repassage.webp', 'service_price' => 10.99],
+            ['id'=>'2','service_name' => 'Simple Repassage', 'service_image' => 'assets/photo_prestation_service_simple_repassage_hackaton_pressing.webp', 'service_price' => 5.99],
+            ['id'=>'3','service_name' => 'Blanchissement', 'service_image' => 'assets/photo_prestation_service_blanchissement_hackaton_pressing.webp', 'service_price' => 14.99],
+            ['id'=>'4','service_name' => 'Nettoyage Délicat', 'service_image' => 'assets/photo_prestation_service_lavage_délicat.webp', 'service_price' => 29.99],
         ];
 
         foreach ($servicesData as $data) {
@@ -147,10 +135,10 @@ class AppFixtures extends Fixture
         $manager->persist($employe);
 
         $statusType = [
-            ['name_status' => 'En attente de confirmation'],
-            ['name_status' => 'En cour'],
-            ['name_status' => 'Terminé'],
-            ['name_status' => 'Annulé']
+            ['id'=>'1','name_status' => 'En attente de confirmation'],
+            ['id'=>'2','name_status' => 'En cour'],
+            ['id'=>'3','name_status' => 'Terminé'],
+            ['id'=>'4','name_status' => 'Annulé']
         ];
         foreach($statusType as $data){
             $status = new Status();

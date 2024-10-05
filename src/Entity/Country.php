@@ -36,6 +36,11 @@ class Country
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return $this->country_name ?? 'Country inconnu';
+    }
+
     public function getCountryName(): ?string
     {
         return $this->country_name;

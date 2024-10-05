@@ -35,6 +35,10 @@ class Paiement
     {
         return $this->id;
     }
+    public function __toString(): string
+    {
+        return $this->paiement_method;
+    }
 
     public function getPaiementMethod(): ?string
     {

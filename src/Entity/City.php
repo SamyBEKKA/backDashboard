@@ -43,6 +43,11 @@ class City
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return $this->city_name ?? 'City inconnu';
+    }
+
     public function getCityName(): ?string
     {
         return $this->city_name;

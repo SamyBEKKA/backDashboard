@@ -42,6 +42,18 @@ class Item
         return $this->id;
     }
 
+    public function __toString(): string
+    {
+        return sprintf(
+            'Service: %s, Article: %s, Matériel: %s, Prix total: %.2f€, Description: %s',
+            $this->service ? $this->service->__toString() : 'Aucun service', // Si le service est null, afficher 'Aucun service'
+            $this->article_id ? $this->article_id->__toString() : 'Aucun article', // Si l'article est null, afficher 'Aucun article'
+            $this->material_id ? $this->material_id->__toString() : 'Aucun matériel', // Si le matériel est null, afficher 'Aucun matériel'
+            $this->total_price ?? 0, // Si le prix total est null, afficher 0
+            $this->item_description ?? 'Aucune description' // Si la description est null, afficher 'Aucune description'
+        );
+    }
+
     public function getNombresArticles(): ?int
     {
         return $this->nombres_articles;

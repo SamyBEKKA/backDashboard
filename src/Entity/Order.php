@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
@@ -40,6 +41,12 @@ class Order
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Paiement $paiement_id = null;
+
+    #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    private ?\DateTimeImmutable $order_date_depot = null;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private ?bool $use_existing_items = null;
 
     public function __construct()
     {
@@ -140,4 +147,37 @@ class Order
 
         return $this;
     }
+
+    public function getOrderDateDepot(): ?\DateTimeImmutable
+    {
+        return $this->order_date_depot;
+    }
+
+    public function setOrderDateDepot(\DateTimeImmutable $order_date_depot): static
+    {
+        $this->order_date_depot = $order_date_depot;
+
+        return $this;
+    }
+
+    // Méthode appelée automatiquement lors de l'insertion (PrePersist)
+    #[ORM\PrePersist]
+    public function setOrderDateDepotValue(): void
+    {
+        if ($this->order_date_depot === null) {
+            $this->order_date_depot = new \DateTimeImmutable(); // Définit la date actuelle
+        }
+    }
+
+    // public function getUseExistingItems(): ?bool
+    // {
+    //     return $this->use_existing_items;
+    // }
+
+    // public function setUseExistingItems(?bool $use_existing_items): self
+    // {
+    //     $this->use_existing_items = $use_existing_items;
+
+    //     return $this;
+    // }
 }
