@@ -12,14 +12,17 @@ use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\InheritanceType;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity('user_email', message: 'Cet email est déjà utilisé.')]
+#[UniqueEntity('user_tel', message: 'Ce numéro de téléphone est déjà utilisé.')]
 #[ORM\Table(name: '`user`')]
 #[ORM\InheritanceType('JOINED')]
-#[ORM\DiscriminatorColumn(name: "dtype", type: "string")]
+#[ORM\DiscriminatorColumn(name: "dtype", type: "string")] // data type, pour les types de données
 #[ORM\DiscriminatorMap(["user" => User::class, "employe" => Employe::class])]
 // #[ORM\UniqueConstraint(name: 'ID_USERNAME', fields: ['user_email'])]
 #[ApiResource()]

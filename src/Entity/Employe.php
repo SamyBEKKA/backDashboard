@@ -5,8 +5,10 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\EmployeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: EmployeRepository::class)]
+#[UniqueEntity('employe_pseudo', message: 'Ce pseudo est déjà utilisé.')]
 #[ApiResource()]
 class Employe extends User
 {

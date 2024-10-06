@@ -45,8 +45,11 @@ class Order
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $order_date_depot = null;
 
-    #[ORM\Column(type: 'boolean', nullable: true)]
-    private ?bool $use_existing_items = null;
+    #[ORM\Column(nullable: true)]
+    private ?float $order_total_price = null;
+
+    // #[ORM\Column(type: 'boolean', nullable: true)]
+    // private ?bool $use_existing_items = null;
 
     public function __construct()
     {
@@ -180,4 +183,16 @@ class Order
 
     //     return $this;
     // }
+
+    public function getOrderTotalPrice(): ?float
+    {
+        return $this->order_total_price;
+    }
+
+    public function setOrderTotalPrice(?float $order_total_price): static
+    {
+        $this->order_total_price = $order_total_price;
+
+        return $this;
+    }
 }
