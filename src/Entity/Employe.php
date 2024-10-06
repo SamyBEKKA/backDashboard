@@ -12,6 +12,26 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ApiResource()]
 class Employe extends User
 {
+    
+    #[ORM\Column(length: 255)]
+    private ?string $employe_pseudo = null;
+    
+    public function __toString(): string
+    {
+        return $this->employe_pseudo; // Retourne le pseudo de l'employé
+    }
+    
+    public function getEmployePseudo(): ?string
+    {
+        return $this->employe_pseudo;
+    }
+
+    public function setEmployePseudo(string $employe_pseudo): static
+    {
+        $this->employe_pseudo = $employe_pseudo;
+
+        return $this;
+    }
     // #[ORM\Id]
     // #[ORM\GeneratedValue]
     // #[ORM\Column]
@@ -23,8 +43,7 @@ class Employe extends User
     // #[ORM\Column(length: 255)]
     // private ?string $employe_last_name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $employe_pseudo = null;
+    
 
     // #[ORM\Column(length: 255)]
     // private ?string $employe_password = null;
@@ -46,22 +65,7 @@ class Employe extends User
     //     $this->orders = new ArrayCollection();
     // }
     // Méthode __toString pour renvoyer le pseudo de l'employé
-    public function __toString(): string
-    {
-        return $this->employe_pseudo; // Retourne le pseudo de l'employé
-    }
     
-    public function getEmployePseudo(): ?string
-    {
-        return $this->employe_pseudo;
-    }
-
-    public function setEmployePseudo(string $employe_pseudo): static
-    {
-        $this->employe_pseudo = $employe_pseudo;
-
-        return $this;
-    }
 
     // public function getId(): ?int
     // {

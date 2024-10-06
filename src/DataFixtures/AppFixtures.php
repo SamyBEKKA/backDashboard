@@ -20,24 +20,15 @@ class AppFixtures extends Fixture
     {
         // Création des articles
         $articlesData = [
-            ['id'=>'1','article_name' => 'Haut', 
-            'article_image' => '', 
-            'article_description' => 'Un haut élégant'],
-            ['id'=>'2','article_name' => 'Bas', 
-            'article_image' => '', 
-            'article_description' => 'Des bas confortables'],
-            ['id'=>'3','article_name' => 'Robe', 'article_image' => '', 
-            'article_description' => 'Une robe chic'],
-            ['id'=>'4','article_name' => 'Sous-vêtement', 
-            'article_image' => '', 
-            'article_description' => 'Sous-vêtements de qualité'],
+            ['id'=>'1','article_name' => 'Haut',],
+            ['id'=>'2','article_name' => 'Bas'],
+            ['id'=>'3','article_name' => 'Robe'],
+            ['id'=>'4','article_name' => 'Sous-vêtement'],
         ];
 
         foreach ($articlesData as $data) {
             $article = new Article();
             $article->setArticleName($data['article_name']);
-            $article->setArticleImage($data['article_image']);
-            $article->setArticleDescription($data['article_description']);
             $manager->persist($article);
         }
 

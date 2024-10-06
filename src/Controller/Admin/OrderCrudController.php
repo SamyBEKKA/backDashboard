@@ -4,8 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Item;
 use App\Entity\Order;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -14,6 +12,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use Symfony\Bundle\SecurityBundle\Security;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 
 class OrderCrudController extends AbstractCrudController
 {
@@ -38,12 +38,6 @@ class OrderCrudController extends AbstractCrudController
             AssociationField::new('employe_id', 'Employé'),
             AssociationField::new('user_id', 'Client'),
             DateField::new('order_date_depot', 'Date de dépôt')->setFormTypeOption('disabled', false), // Désactive la modification manuelle
-            // Liste des items associés à la commande (OneToMany avec Item)
-            // CollectionField::new('items', 'Panier du client')
-            //     ->useEntryCrudForm(ItemCrudController::class) // Utilise un autre CRUD pour gérer chaque item
-            //     ->allowAdd()  // Permet l'ajout d'items
-            //     ->allowDelete(),  // Permet la suppression d'items
-            // Champ pour sélectionner un ou plusieurs Items déjà existants
             AssociationField::new('items', 'Panier du client')
                 ->setFormTypeOptions([
                     'by_reference' => true, // Nécessaire pour la gestion des collections ManyToMany ou OneToMany
@@ -92,4 +86,11 @@ class OrderCrudController extends AbstractCrudController
         // Les admins peuvent faire toutes les actions
         return parent::configureActions($actions);
     }
+
+    // Liste des items associés à la commande (OneToMany avec Item)
+            // CollectionField::new('items', 'Panier du client')
+            //     ->useEntryCrudForm(ItemCrudController::class) // Utilise un autre CRUD pour gérer chaque item
+            //     ->allowAdd()  // Permet l'ajout d'items
+            //     ->allowDelete(),  // Permet la suppression d'items
+            // Champ pour sélectionner un ou plusieurs Items déjà existants
 }
