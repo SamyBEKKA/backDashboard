@@ -23,7 +23,7 @@ class HashUserPasswordListener
         $entity = $event->getObject();
 
         // Hachage du mot de passe pour User et pour Employe
-        if ($entity instanceof User || $entity instanceof Employe) {
+        if ($entity instanceof User) {
             $entity->setPassword($this->hasher->hashPassword($entity, $entity->getPassword()));
         } 
         

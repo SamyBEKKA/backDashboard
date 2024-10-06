@@ -80,10 +80,10 @@ class AppFixtures extends Fixture
 
         // Création des services
         $servicesData = [
-            ['id'=>'1','service_name' => 'Lavage Repassage', 'service_image' => 'assets/photo_prestation_service_hackaton_pressing_lavage_et_repassage.webp', 'service_price' => 10.99],
-            ['id'=>'2','service_name' => 'Simple Repassage', 'service_image' => 'assets/photo_prestation_service_simple_repassage_hackaton_pressing.webp', 'service_price' => 5.99],
-            ['id'=>'3','service_name' => 'Blanchissement', 'service_image' => 'assets/photo_prestation_service_blanchissement_hackaton_pressing.webp', 'service_price' => 14.99],
-            ['id'=>'4','service_name' => 'Nettoyage Délicat', 'service_image' => 'assets/photo_prestation_service_lavage_délicat.webp', 'service_price' => 29.99],
+            ['id'=>'1','service_name' => 'Lavage Repassage', 'service_image' => '/assets/photo_prestation_service_hackaton_pressing_lavage_et_repassage.webp', 'service_price' => 10.99],
+            ['id'=>'2','service_name' => 'Simple Repassage', 'service_image' => '/assets/photo_prestation_service_simple_repassage_hackaton_pressing.webp', 'service_price' => 5.99],
+            ['id'=>'3','service_name' => 'Blanchissement', 'service_image' => '/assets/photo_prestation_service_blanchissement_hackaton_pressing.webp', 'service_price' => 14.99],
+            ['id'=>'4','service_name' => 'Nettoyage Délicat', 'service_image' => '/assets/photo_prestation_service_hackaton_pressing_lavage_delicat.webp', 'service_price' => 29.99],
         ];
 
         foreach ($servicesData as $data) {
