@@ -16,10 +16,10 @@ class Item
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $nombres_articles = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $total_price = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
@@ -136,5 +136,14 @@ class Item
         $this->material_id = $material_id;
 
         return $this;
+    }
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function updateTotalPrice(): void
+    {
+        // Transférer automatiquement le prix du service dans total_price
+        if ($this->service) {
+            $this->total_price = $this->service->getServicePrice();
+        }
     }
 }

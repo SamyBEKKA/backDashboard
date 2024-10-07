@@ -32,7 +32,11 @@ class Service
 
     public function __toString(): string
     {
-        return $this->service_name ?? 'Service inconnu'; // Retourne le nom du service ou 'Service inconnu' si null
+        $serviceName = $this->service_name ?? 'Service inconnu';
+        $servicePrice = $this->service_price !== null ? number_format($this->service_price, 2) . ' €' : 'Prix non défini';
+        
+        // Retourne le nom du service suivi du prix
+        return sprintf('%s - %s', $serviceName, $servicePrice);
     }
     
     public function getServiceName(): ?string

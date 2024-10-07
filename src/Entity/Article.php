@@ -21,7 +21,7 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $article_name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     private ?string $article_image = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
